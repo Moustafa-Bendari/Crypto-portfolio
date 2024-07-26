@@ -98,13 +98,14 @@ Vue.createApp({
         this.currentUser = data
         console.log(data)
         this.favorites = data.trackedcoins
+         await this.getcryptodata3()
+         this.setPage("Dashboard");
+
         if (this.cryptoData5.length > 0) {
         this.favoritesarraywork();
       } else {
         console.error("cryptoData5 is not populated yet");
       }
-        this.setPage("Dashboard");
-        console.log(this.favorites)
       }
     },
     deleteSession: async function (){
@@ -401,12 +402,12 @@ Vue.createApp({
       }
     },
   },
-  created() {
+  async created() {
     console.log("created");
     document.title = "TRAKR | " + this.currentPage;
     this.getcryptodata();
     this.getcryptodataFree();
-    this.getcryptodata3();
+    await this.getcryptodata3();
     this.getNews(this.currentNews);
     this.getSession();
     
